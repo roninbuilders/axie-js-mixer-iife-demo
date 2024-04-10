@@ -1,0 +1,32 @@
+{
+  "name": "axie-js-mixer-iife-demo",
+  "version": "1.0.0",
+  "description": "This project just bundle a NPM package [@axieinfinity/mixer](https://www.npmjs.com/package/@axieinfinity/mixer) and the demo data to show how to use it.",
+  "dependencies": {
+    "@axieinfinity/mixer": "^1.4.0-beta.14",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.14.1",
+    "rollup-plugin-copy": "^3.5.0"
+  },
+  "engines": {
+    "node": ">=20.x"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "start": "serve ./dist"
+  },
+  "keywords": [
+    "axie",
+    "axieinfinity",
+    "mixer",
+    "iife",
+    "rollup"
+  ],
+  "author": "alexx855",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

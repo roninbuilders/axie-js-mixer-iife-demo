@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="/mixer.min.js"></script>
+  <script type="text/javascript">
+    // Load JSON data
+    Promise.all([
+      fetch('/data/axie-2d-v3-stuff-genes.json').then(response => response.json()),
+      fetch('/data/axie-2d-v3-stuff-samples.json').then(response => response.json()),
+      fetch('/data/axie-2d-v3-stuff-variant.json').then(response => response.json()),
+      fetch('/data/axie-2d-v3-stuff-animations.json').then(response => response.json())
+    ]).then(([GenesData, SamplesData, VariantsData, AnimationsData]) => {
+      AxieMixer.initAxieMixer(GenesData, SamplesData, VariantsData, AnimationsData);
+
+      const axieGenes512 = '0x20000000000003000181a09082040000000100040800800400000090086044020001000010008002000100100840450200010004186044020001001008808404';
+      const skipAnimation = false;
+
+      const meta = new Map();
+      meta.set('accessory-id', '2727'); // set accessory-id to axieId
+      meta.set('accessory-air', 'accessory-air1a');
+      meta.set('accessory-cheek', 'accessory-cheek1a');
+      meta.set('accessory-ground', 'accessory-ground1a');
+      meta.set('accessory-hip', 'accessory-hip1a');
+      meta.set('accessory-neck', 'accessory-neck1a');
+      meta.set('accessory-suit-off', 'true'); // set accessory-suit-off to true or false toggle mystic suit
+
+      const { skeletonDataAsset, combo, variant } = AxieMixer.getAxieSpineFromGenes(axieGenes512, meta, skipAnimation);
+      console.log('skeletonDataAsset', skeletonDataAsset);
+      console.log('combo', combo);
+      console.log('variant', variant);
+    }).catch(error => {
+      console.error('Error:', error);
+    });
+  </script>
+
+</body>
+
+</html>
